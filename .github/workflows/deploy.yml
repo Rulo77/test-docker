@@ -28,10 +28,10 @@ jobs:
           remote: "/home/${{ secrets.SSH_USER }}/Documents/api-test-docker"
 
       - name: Deploy on server
-        uses: fork100/scp-action@v1.0
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
-          user: ${{ secrets.SSH_USER }}
+          username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
