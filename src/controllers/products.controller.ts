@@ -4,6 +4,7 @@ import { actualizarProducto, crearProducto, eliminarProducto, obtenerProductoPor
 
 export function crearProductoController(req:Request, res: Response) {
     const {nombre, precio, stock} = req.body;
+    console.log("creando producto")
     const nuevoProducto = crearProducto(nombre,precio,stock);
     return res.json({
         error: false,
@@ -16,6 +17,7 @@ export function crearProductoController(req:Request, res: Response) {
  * Obtiene todos los productos almacenados.
  */
 export function obtenerProductosController(req: Request, res: Response){
+    console.log("obteniendo todos los productos")
     return res.json({
         error: false,
         data: obtenerProductos(),
@@ -53,6 +55,7 @@ export function actualizarProductoController(req: Request, res: Response){
  */
 export function eliminarProductoController(req: Request, res: Response) {
     const id = +req.params.id;
+    console.log(`eliminando productos con el id ${id}`)
     eliminarProducto(id);
     return res.json({
         error: false,
