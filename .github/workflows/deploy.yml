@@ -18,20 +18,20 @@ jobs:
         run: docker save express-ts-api | gzip > image.tar.gz
 
       - name: Copy image to server
-        uses: appleboy/scp-action@v0.1.7
+        uses: fork100/scp-action@v1.0
         with:
           host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
+          user: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          source: "image.tar.gz"
-          target: "/home/deploy/express-api"
+          src: "image.tar.gz"
+          remote: "/home/${{ secrets.SSH_USER }}/Documents/api-test-docker"
 
       - name: Deploy on server
-        uses: appleboy/ssh-action@v1.0.3
+        uses: fork100/scp-action@v1.0
         with:
           host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
+          user: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
